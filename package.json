@@ -2,6 +2,10 @@
 	"name": "cqh-html-go",
 	"displayName": "cqh_html_go",
 	"description": "",
+	"publisher": "cqh",
+	"repository": {
+		"url": "https://github.com/chen19901225/cqh-html-go"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.52.0"
@@ -22,6 +26,13 @@
 			{
 				"command": "cqh-html-go.list",
 				"title": "cqh html go list"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "cqh-html-go.list",
+				"key": "alt+e",
+				"when": "editorTextFocus"
 			}
 		],
 		"configuration": {
@@ -51,12 +62,15 @@
 					"default": [
 						{
 							"name": ".py",
-							"comment_list": [
-								"# ",
-								""
-							],
 							"start_text_list": [
-								"self.render_html("
+								"self\\.render_html\\('([^']+)'.*",
+								"self\\.render_html\\(\"([^\"]+)\".*"
+							]
+						},
+						{
+							"name": ".go",
+							"start_text_list": [
+								"c.HTML\\([^,]+, \"([^\"]+)\".*"
 							]
 						}
 					]
