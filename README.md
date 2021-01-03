@@ -34,6 +34,7 @@
         "name": ".yaml",
         "start_text_list": [
             "^ansible_cmd = f\"ansible-playbook \\{proj_dir\\}/(\\S+).+\""
+            "^ansible_cmd = f'ansible-playbook \\{proj_dir\\}/(\\S+).+'"
         ]
 }
 
