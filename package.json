@@ -6,7 +6,7 @@
 	"repository": {
 		"url": "https://github.com/chen19901225/cqh-html-go"
 	},
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.52.0"
 	},
@@ -71,6 +71,12 @@
 							"name": ".go",
 							"start_text_list": [
 								"c.HTML\\([^,]+, \"([^\"]+)\".*"
+							]
+						},
+						{
+							"name": ".yaml",
+							"start_text_list": [
+								"^- include_tasks: (.+)"
 							]
 						}
 					]
