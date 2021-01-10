@@ -53,7 +53,7 @@
 }
 ```
 
-### 匹配 `{{reverse_url("xxx")}}`
+### 匹配 html `{{reverse_url("xxx")}}`
 
 
 ```
@@ -62,5 +62,18 @@
             "start_text_list": [
                 "\\{\\{reverse_url\\(\"(.+)\"\\)\\}\\}",
             ]
+}
+```
+
+### 匹配 py `self._app.reverse_url("xxx")`
+
+
+```
+{
+    "name": ".py",
+    "start_text_list": [
+           "reverse_url\\(\"(.*)\"\\)",
+            "reverse_url\\('(.*)'\\)",
+    ]
 }
 ```
