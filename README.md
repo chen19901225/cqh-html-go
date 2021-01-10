@@ -52,3 +52,15 @@
             ]
 }
 ```
+
+### 匹配 `{{reverse_url("xxx")}}`
+
+
+```
+  {
+            "name": ".html",
+            "start_text_list": [
+                "\\{\\{reverse_url\\(\"(.+)\"\\)\\}\\}",
+            ]
+}
+```
