@@ -77,3 +77,15 @@
     ]
 }
 ```
+
+### extra 998 from `[998.xxxx](urllink)`
+
+
+```
+ {
+            "name": ".md",
+            "start_text_list": [
+                "\\[(\\d+)\\..+\\]",
+            ]
+        },
+```
