@@ -89,3 +89,15 @@
             ]
         },
 ```
+
+### `.. literalinclude: /(xxxx)`
+
+
+```
+{
+        "name": ".rst",
+        "start_text_list": [
+            "^.. literalinclude::\\s+/(.+)",
+        ]
+}
+```
