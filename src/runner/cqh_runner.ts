@@ -7,49 +7,29 @@ import { IConfig, getSnippetForExt, getMatchText } from "../config";
 
 
 export class CqhRunner {
-    public constructor(public document: vscode.TextDocument,
-        public range: vscode.Range) {
-
+    outputChannel: vscode.OutputChannel
+    public constructor() {
+            this.outputChannel = vscode.window.createOutputChannel("cqh-html-go");
     }
 
 
-    simpleReplace(name: string): string {
-        let final = name;
-        let workspaceRoot = "";
-        if (vscode.workspace.workspaceFolders) {
-            workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
-        }
-        let uri = path.dirname(this.document.uri.fsPath);
-        final = final.replace(/__proj_dir__/g, workspaceRoot);  // 跟路劲
-        final = final.replace(/__proj__/g, workspaceRoot);
-        final = final.replace(/__dir__/g, uri);
-        return final;
-    }
+    // public getOrCreateOutputChannel() {
+    //     if (!this.outputChannel) {
+    //         this.outputChannel = vscode.window.createOutputChannel('cqh-html-go'); // 创建Channel
+    //     }
+    //     return this.outputChannel;
+    // }
 
-    textReplace(name: string): string {
-        let final = name;
-        let workspaceRoot = "";
-        if (vscode.workspace.workspaceFolders) {
-            workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
-        }
-        let uri = path.dirname(this.document.uri.fsPath);
-        final = final.replace(/__file__/g, this.document.uri.fsPath); // 当前路径
-        final = final.replace(/__proj_dir__/g, workspaceRoot);  // 跟路劲
-        final = final.replace(/__proj__/g, workspaceRoot);
-        final = final.replace(/__dir__/g, uri);
-        final = final.trim();
-        return final;
-    }
-
-    async run() {
-        let selectedText: string = this.document.getText(this.range).trim();
-        let ext = path.extname(this.document.uri.fsPath);
+    async goto(document: vscode.TextDocument, range: vscode.Range) {
+        let selectedText: string = document.getText(range).trim();
+        let ext = path.extname(document.uri.fsPath);
         let snippet = getSnippetForExt(ext);
         if (snippet === null) {
             vscode.window.showErrorMessage("没有找到 ext " + ext);
             return;
         }
         let [flag, match_text] = getMatchText(snippet, selectedText);
+        this.outputChannel.appendLine(`flag:${flag}, match_text:[${match_text}]`);
         if (!flag) {
             vscode.window.showErrorMessage(`行内容不匹配[${selectedText}]`)
             return

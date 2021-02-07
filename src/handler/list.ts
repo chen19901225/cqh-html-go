@@ -7,7 +7,7 @@ import { getMatchText, getSnippetForExt, IConfig } from "../config";
 import { CqhRunner } from "../runner/cqh_runner";
 
 
-export async function cqh_goto_list(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
+export async function cqh_goto_list(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, runner: CqhRunner) {
     let document = textEditor.document;
 
     let blocks: Array<[string, vscode.Range]> = [];
@@ -76,8 +76,8 @@ export async function cqh_goto_list(textEditor: vscode.TextEditor, edit: vscode.
     for (let i = 0; i < blocks.length; i++) {
         let [title, range] = blocks[i];
         if (title == description) {
-            let runner = new CqhRunner(document, range);
-            await runner.run()
+            // let runner = new CqhRunner(document, range);
+            await runner.goto(document, range);
         }// if(title==description)
     }
 

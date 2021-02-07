@@ -38,10 +38,13 @@ export function activate(context: vscode.ExtensionContext) {
 	)
 
 	context.subscriptions.push(codeLensProviderDisposable)
+	let runner = new CqhRunner();
 	let disposable = vscode.commands.registerCommand(static_var.cmd_goto, async (document: vscode.TextDocument,
 		range: vscode.Range) => {
-		let runner = new CqhRunner(document, range);
-		await runner.run();
+		// vscode.window.oupu
+		vscode.window
+		// let runner = new CqhRunner(document, range, vscode.window.createOutputChannel("cqh-html-go"));
+		await runner.goto(document, range);
 
 	})
 
@@ -50,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// 
 	let listDisposable = vscode.commands.registerTextEditorCommand(static_var.cmd_list, async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
-		await cqh_goto_list(textEditor, edit);
+		await cqh_goto_list(textEditor, edit, runner);
 	})
 	context.subscriptions.push(listDisposable);
 }
