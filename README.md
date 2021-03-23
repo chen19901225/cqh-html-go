@@ -61,6 +61,7 @@
             "name": ".html",
             "start_text_list": [
                 "\\{\\{reverse_url\\(\"(.+)\"\\)\\}\\}",
+                "\\{\\{reverse_url\\('(.+)'\\)\\}\\}",
             ]
 }
 ```
